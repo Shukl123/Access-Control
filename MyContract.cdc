@@ -1,4 +1,4 @@
-access(all) contract SomeContract {
+pub contract SomeContract {
     pub var testStruct: SomeStruct
 
     pub struct SomeStruct {
@@ -14,7 +14,7 @@ access(all) contract SomeContract {
         access(contract) var c: String
 
         access(self) var d: String
-
+// priv
         //
         // 3 Functions
         //
@@ -23,33 +23,13 @@ access(all) contract SomeContract {
 
         access(contract) fun contractFunc() {}
 
-        access(self) fun selfFunc() {}
+        access(self) fun privateFunc() {}
 
 
         pub fun structFunc() {
             /**************/
             /*** AREA 1 ***/
             /**************/
-
-            //pub(set)
-            //
-            SomeContract.testStruct.a="2"
-            let variableA = SomeContract.testStruct.a
-
-            //pub
-            //
-            SomeContract.testStruct.b="2"
-            let variableB = SomeContract.testStruct.b
-
-            //access(contract)
-            //
-            SomeContract.testStruct.c="2"
-            let variableC = SomeContract.testStruct.c
-
-            //access(self)
-            //
-            SomeContract.testStruct.d="2"
-            let variableD = SomeContract.testStruct.d
 
 
         }
@@ -70,28 +50,6 @@ access(all) contract SomeContract {
             /*** AREA 2 ***/
             /**************/
 
-
-              //pub(set)
-              //
-              SomeContract.testStruct.a="2"
-              let variableA = SomeContract.testStruct.a
-              
-              //pub
-              //
-              //SomeContract.testStruct.b="2"
-              let variableB = SomeContract.testStruct.b
-              
-
-              //access(contract)
-              //
-               //SomeContract.testStruct.c="2"
-              let variableC = SomeContract.testStruct.c
-              
-
-              //access(self)
-              //SomeContract.testStruct.d="2"
-              //let variableD = SomeContract.testStruct.d
-
         }
 
         init() {
@@ -109,31 +67,40 @@ access(all) contract SomeContract {
         /**************/
 
 
-            //pub(set)
-            //
-            SomeContract.testStruct.a="2"
-            let variableA = SomeContract.testStruct.a
-
-            //pub
-            //
-            // SomeContract.testStruct.b="2"
-            let variableB = SomeContract.testStruct.b
-
-
-            //access(contract)
-            //
-             //SomeContract.testStruct.c="2"
-            let variableC = SomeContract.testStruct.c
-            
-
-            //access(self)
-            //
-            //SomeContract.testStruct.d="2"
-            //let variableD = SomeContract.testStruct.d
-
     }
 
     init() {
         self.testStruct = SomeStruct()
     }
 }
+
+
+
+// variable a
+//   read scope  : 1,2,3,4
+//   write scope : 1,2,3,4
+
+// variable b
+//   read scope  : 1,2,3,4
+//   write scope : 1
+
+// variable c
+//   read scope  : 1,2,3
+//   write scope : 1
+
+// variable d
+//   read scope  : 1
+//   write scope : 1
+
+// variable e
+//   read scope  : 1,2,3,4
+//   write scope : 2
+
+// function publicFunc
+//   can be called AREA : 1,2,3,4Acc
+
+// function contractFunc
+//   can be called AREA : 1,2,3
+
+// function privateFunc
+//   can be called AREA : 1
